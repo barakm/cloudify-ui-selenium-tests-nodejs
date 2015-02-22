@@ -2,8 +2,6 @@
   "dependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-jasmine-node": "^0.2.1",
-    "jasmine-node": "^1.11.0",
     "jshint-stylish": "^1.0.0",
     "lodash": "^2.4.1",
     "log4js": "^0.6.21",
@@ -12,6 +10,8 @@
     "selenium-webdriver": "~2.44.0"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "^0.10.0"
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.1.0"
   }
 }
