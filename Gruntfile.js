@@ -15,18 +15,20 @@ module.exports = function (grunt) {
                 'src/**/*.js'
             ]
         },
-        jasmine_node: {
-            options: {
-                specNameMatcher: 'spec',
-                extensions: 'js'
-
-            },
-
-            all: ['src/suites']
+        mochaTest: {
+            sanity: {
+                options: {
+                    reporter: 'spec',
+                    captureFile: 'results.txt', // Optionally capture the reporter output to a file
+                    quiet: false, // Optionally suppress output to standard out (defaults to false)
+                    clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
+                },
+                src: ['src/suites/sanity/index.spec.js']
+            }
         }
     });
 
-    grunt.registerTask('test', [ 'jasmine_node' ]);
+    grunt.registerTask('test', [ 'mochaSelenium:all' ]);
 
     grunt.registerTask('build', [ 'jshint' ]);
 
