@@ -4,5 +4,12 @@
     "selenium" : {
         "serverUrl" : "http://localhost:4444/wd/hub",
         "browserType" : "chrome"
+    },
+    "blueprint": {
+      "name": "nodecellar"
+    },
+    "deployment": {
+      "name": "nodecellarDeployment",
+      "params": ["ubuntu", "flavor-id", "image-id"]
     }
 }
