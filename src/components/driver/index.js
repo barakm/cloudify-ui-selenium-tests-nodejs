@@ -69,8 +69,6 @@ exports.get = function(){
 exports.quit = function(){
     logger.info('quitting driver');
     return driver.quit( );
-
-
 };
 
 
