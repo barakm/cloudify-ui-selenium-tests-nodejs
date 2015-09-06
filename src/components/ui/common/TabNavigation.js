@@ -21,9 +21,14 @@ module.exports = function TabNavigation(base) {
         },
         goTo : function( sectionName ){
             var sections = this.getSections().filter(function (section) {
-                return section.getText().then(function (text) {
+                return section.getAttribute('value').then(function (text) {
                     return text === sectionName;
-                });
+                }).then(function(attrEq){
+                    // todo: resign from getText checking because it's dependent on translation
+                    return section.getText().then(function(text){
+                        return attrEq || text === sectionName;
+                    })
+                })
             });
             expect(sections.count()).toBe(1, 'section ' + sectionName + ' should exist');
             sections.click();

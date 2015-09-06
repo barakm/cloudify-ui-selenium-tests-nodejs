@@ -5,5 +5,5 @@ exports.NodesTable = require('./NodesTable');
 exports.Network = require('./Network');
 exports.Source = require('./Source');
 exports.Topology = require('./Topology');
-exports.FloatingPanel = require('./FloatingPanel');
+exports.PropertiesPanel = require('./PropertiesPanel');
 exports.ActionsDropdown = require('./ActionsDropdown');

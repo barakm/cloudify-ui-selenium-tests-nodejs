@@ -35,9 +35,7 @@ exports.getBlueprint = function( opts ){
 
 exports.goToBlueprint = function( opts ){
     return exports.getBlueprint(opts).then(function(blueprint){
-        return browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(function(){
-            return blueprint.all(by.css('.name')).click();
-        });
+        return blueprint.all(by.css('.name a')).click();
     });
 };
 

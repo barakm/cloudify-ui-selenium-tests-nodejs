@@ -25,11 +25,22 @@
                     "propertiesPanel" : {
                         "nodeToClick": "mongod"
                     },
-                    "deployment": {
-                        "agent_private_key_path": "root/.ssh/id_rsa",
-                        "agent_user": "vagrant",
-                        "host_ip":"10.10.1.10"
+                    "sections": {
+                        "topology" : "Topology",
+                        "network" : "Network",
+                        "nodes" : "Nodes",
+                        "source" : "Source"
+                    },
+                    "panel_sections": {
+                        "general" : "general",
+                        "properties" : "properties",
+                        "relationships" : "relationships"
                     }
+                },
+                "deployment": {
+                    "agent_private_key_path": "root/.ssh/id_rsa",
+                    "agent_user": "vagrant",
+                    "host_ip":"10.10.1.10"
                 }
             }
         }

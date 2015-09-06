@@ -14,9 +14,9 @@ describe('blueprints page', function(){
 
     it('should go into blueprint and verify all section exists', function (done) {
         components.ui.blueprints.IndexPage.goToBlueprint({'name' : testConf.blueprints.blueprintToRead });
-        components.ui.blueprints.BlueprintPage.goToSection('Network');
-        components.ui.blueprints.BlueprintPage.goToSection('Nodes');
-        components.ui.blueprints.BlueprintPage.goToSection('Source');
+        components.ui.blueprints.BlueprintPage.goToNetwork('Network');
+        components.ui.blueprints.BlueprintPage.goToNodes('Nodes');
+        components.ui.blueprints.BlueprintPage.goToSource('Source');
         browser.sleep(1000).then(function(){ done(); });
     });
 
@@ -62,11 +62,11 @@ describe('blueprints page', function(){
     it('should open node details panel when clicking on node in topology section', function(done) {
         logger.trace('start blueprint topology section test');
         components.ui.blueprints.IndexPage.goToBlueprint({'name' : testConf.blueprints.blueprintToRead});
-        components.ui.blueprints.BlueprintPage.goToSection('Topology');
+        components.ui.blueprints.BlueprintPage.goToTopology();
         components.ui.blueprints.BlueprintPage.Topology.clickNode(testConf.blueprints.propertiesPanel.nodeToClick);
-        components.ui.blueprints.BlueprintPage.FloatingPanel.goToSection('Properties');
-        components.ui.blueprints.BlueprintPage.FloatingPanel.goToSection('Relationships');
-        components.ui.blueprints.BlueprintPage.FloatingPanel.close();
+        components.ui.blueprints.BlueprintPage.PropertiesPanel.goToProperties();
+        components.ui.blueprints.BlueprintPage.PropertiesPanel.goToRelationships();
+        components.ui.blueprints.BlueprintPage.PropertiesPanel.close();
 
         browser.sleep(1000).then(function(){ done(); });
     });
