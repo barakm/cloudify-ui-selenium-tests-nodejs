@@ -1,5 +1,6 @@
 'use strict';
 
+var common = require('../common');
 
 exports.closeEventsPanel = function() {
     browser.actions().mouseDown($('[deployment-events] .dragBtn')).perform();
@@ -9,4 +10,8 @@ exports.closeEventsPanel = function() {
 
 exports.getNodePropertiesPanel = function(){
     return $('[floating-deployment-node-panel]');
+};
+
+exports.deleteDeployment = function() {
+        new common.ActionsDropdown($('body')).clickMenuOption('Delete');
 };

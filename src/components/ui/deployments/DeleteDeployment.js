@@ -17,3 +17,9 @@ exports.clickCancel = function() {
         btns[0].click();
     });
 };
+
+exports.clickClose = function() {
+    element.all(by.css('.ngdialog-close')).then(function(btns) {
+        btns[0].click();
+    });
+};
