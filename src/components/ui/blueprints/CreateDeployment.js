@@ -33,10 +33,20 @@ exports.setRaw = exports.setParams;
 
 /**
  * Click on create button on create deployment dialog to complete the creation of new deployment
- * @returns {promise}
+ * @returns {!webdriver.promise.Promise.<R>}
  */
 exports.deploy = function() {
     return element(by.css('#deployDialogContainer .deployButtons button')).click();
+};
+
+/**
+ * Verify if 'deploy' button is active
+ * @returns {!webdriver.promise.Promise.<R>}
+ */
+exports.isButtonActive = function() {
+    return element(by.css('#deployDialogContainer .deployButtons button')).getAttribute('disabled').then(function(a){
+        return a === null;
+    });
 };
 
 exports.submit = exports.deploy;

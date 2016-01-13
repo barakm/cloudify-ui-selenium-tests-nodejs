@@ -44,7 +44,8 @@ describe('blueprints page', function(){
         logger.trace('start create deployment test');
 
         components.ui.blueprints.IndexPage.createDeployment({'name' : testConf.blueprints.blueprintToDeploy});
-
+        // 'Deploy' button should be disabled while the deployment name field is empty
+        expect(components.ui.blueprints.CreateDeployment.isButtonActive()).toBe(false);
         var newDeploymentName = 'new-deployment-' + new Date().getTime();
 
         components.ui.common.Dialog.clickClose(); // lets test cancel on the way!
@@ -56,6 +57,7 @@ describe('blueprints page', function(){
                 name: newDeploymentName,
                 raw: components.config.tests.sanity.blueprints_spec.deployment
             });
+            expect(components.ui.blueprints.CreateDeployment.isButtonActive()).toBe(true);
             components.ui.blueprints.CreateDeployment.deploy();
             if ( waitFor ) {
                 components.ui.deployments.DeploymentPage.waitForInitializingToStop();
