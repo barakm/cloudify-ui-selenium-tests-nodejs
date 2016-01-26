@@ -19,6 +19,16 @@ describe('blueprints page', function(){
             components.ui.blueprints.IndexPage.goToBlueprint({'name' : testConf.blueprints.blueprintToRead });
         });
 
+        it('should be in topology section by default', function(done) {
+
+            expect(browser.getCurrentUrl()).toContain('/topology');
+            expect(components.ui.common.TabNavigation($('.sections')).getCurrentSection()).toBe('Topology');
+            // this verifies the topology is visible and interactive:
+            components.ui.blueprints.BlueprintPage.Topology.clickNode(testConf.blueprints.nodeToClick);
+
+            browser.sleep(1000).then(done);
+        });
+
         it('should have all sections', function (done) {
             components.ui.blueprints.BlueprintPage.goToNodes();
             components.ui.blueprints.BlueprintPage.goToSource();

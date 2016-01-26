@@ -32,6 +32,9 @@ module.exports = function TabNavigation(base) {
             });
             expect(sections.count()).toBe(1, 'section ' + sectionName + ' should exist');
             sections.click();
+        },
+        getCurrentSection : function(){
+            return base.element(by.css('a.active')).getText();
         }
     };
 };
