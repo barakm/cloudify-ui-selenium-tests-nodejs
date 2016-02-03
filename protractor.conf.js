@@ -3,7 +3,7 @@ var capabilities = {
     'chromeOptions': {'args': ['--disable-extensions']}
 };
 
-var timeout = parseInt(process.env.TIMEOUT || "600000",10);
+var timeout = parseInt(process.env.TIMEOUT || "6000000",10);
 
 if ( !!process.env.BROWSER_TYPE ) {
     if ( process.env.BROWSER_TYPE.toLowerCase() === 'phantomjs') {
@@ -29,6 +29,7 @@ exports.config = {
         blueprints: [  'spec/normalize.js', 'spec/sanity/blueprints.js'  ],
         deployments: [  'spec/normalize.js', 'spec/sanity/deployments.js' ],
         events: [ 'spec/normalize.js', 'spec/sanity/events.js' ],
+        stress: ['spec/stress/deployments.js' ],
         custom: [ 'spec/normalize.js', process.env.CFY_SPEC ]
     },
 
