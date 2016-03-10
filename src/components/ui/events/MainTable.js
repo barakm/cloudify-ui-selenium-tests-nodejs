@@ -11,8 +11,9 @@ mainTable.countRows = function() {
 
 mainTable.clickEvent = function(eventRowNum){
     var eventRow = element.all(by.css('.eventsTable tbody tr[data-ng-click]')).get(eventRowNum);
-    utils.view.scrollIntoView(eventRow);
-    eventRow.click();
+    // todo: take top navbar into consideration
+    //utils.view.scrollIntoView(eventRow);
+    return eventRow.click();
 };
 
 mainTable.isEventInfoOpen = function(eventRowNum){

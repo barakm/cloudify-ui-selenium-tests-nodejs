@@ -423,6 +423,7 @@ describe('logs & events page', function() {
         it('should change pages', function(done){
             events.mainTable.pagination.goToPage(2);
             expect(events.mainTable.pagination.isPageActive(2)).toBe(true);
+            // this line works about 50% of the time, because selenium
             events.mainTable.pagination.goToPage(1);
             expect(events.mainTable.pagination.isPageActive(2)).toBe(false);
             expect(events.mainTable.pagination.isPageActive(1)).toBe(true);
