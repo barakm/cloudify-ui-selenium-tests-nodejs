@@ -12,7 +12,7 @@ describe('logs & events page', function() {
 
     //protractor fails to wait for debounce
     function waitingForDebounce(){
-        return browser.sleep(500);
+        return browser.sleep(1500);
     }
 
     function isAllValuesEqualTo(array, value) {
@@ -397,7 +397,7 @@ describe('logs & events page', function() {
     });
 
     describe('Sorting', function(){
-        it('should sort timestamp', function(done){
+        it('should sort by timestamp', function(done){
             waitingForDebounce();
             //sorted desc by default
             events.mainTable.timestamp.getValues().then(function(values){
@@ -458,23 +458,6 @@ describe('logs & events page', function() {
             browser.sleep(1000).then(done);
         });
 
-        // TODO: bring this test back up https://cloudifysource.atlassian.net/browse/CFY-4899
-        //it('should have log specific fields', function(done){
-        //    //making sure all items are logs
-        //    events.filters.logLevels.select(config.logLevelWithEvents);
-        //    waitingForDebounce();
-        //    events.mainTable.clickEvent(1);
-        //    events.mainTable.getEventInfo(1).then(function(eventInfo){
-        //        expect(Object.keys(eventInfo)).toContain('Log Timestamp');
-        //        expect(Object.keys(eventInfo)).toContain('Logger');
-        //        expect(Object.keys(eventInfo)).toContain('Log Level');
-        //        expect(Object.keys(eventInfo)).not.toContain('Event Timestamp');
-        //        expect(Object.keys(eventInfo)).not.toContain('Event Type');
-        //    });
-        //
-        //    browser.sleep(1000).then(done);
-        //});
-
         it('should have event specific fields', function(done){
             //making sure all items are events
             events.filters.eventTypes.select(config.eventTypeWithEvents);
@@ -513,8 +496,8 @@ describe('logs & events page', function() {
             //checking for events date fields
             events.filters.eventTypes.select(config.eventTypeWithEvents);
             waitingForDebounce();
-            //TODO: Make sure when https://cloudifysource.atlassian.net/browse/CFY-4338 bug is fixed, to open the additional info tab
-            //events.mainTable.clickEvent(1);
+            //Make sure https://cloudifysource.atlassian.net/browse/CFY-4338 works
+            events.mainTable.clickEvent(1);
             events.mainTable.getEventInfo(1).then(function(eventInfo){
                 expect(Date.parse(eventInfo['Registered Timestamp'])).not.toBe(NaN);
                 expect(eventInfo['Registered Timestamp']).toMatch(timestampRegex);
