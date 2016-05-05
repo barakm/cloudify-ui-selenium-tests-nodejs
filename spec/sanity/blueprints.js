@@ -20,6 +20,13 @@ describe('blueprints page', function(){
             components.ui.blueprints.IndexPage.goToBlueprint({'name': testConf.blueprints.blueprintToRead});
         });
 
+        it('should have proper breadcrumbs', function(done){
+            components.ui.blueprints.BlueprintPage.checkBreadCrumbsContent(testConf.blueprints.blueprintToRead);
+            components.ui.blueprints.BlueprintPage.goFromBreadCrumbsToBlueprints();
+
+            browser.sleep(1000).then(function(){ done(); });
+        });
+
         it('should have all sections', function (done) {
             components.ui.blueprints.BlueprintPage.goToNodes();
             components.ui.blueprints.BlueprintPage.goToSource();
