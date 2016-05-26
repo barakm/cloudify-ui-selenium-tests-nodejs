@@ -10,17 +10,17 @@ mainTable.countRows = function() {
 };
 
 mainTable.clickEvent = function(eventRowNum){
-    var eventRow = element.all(by.css('.eventsTable tbody tr[data-ng-click]')).get(eventRowNum);
+    var eventRow = element.all(by.css('.eventsTable tbody tr[ng-click]')).get(eventRowNum);
     //utils.view.scrollIntoView(eventRow); // it doesn't work properly
     eventRow.click();
 };
 
 mainTable.isEventInfoOpen = function(eventRowNum){
-    return element.all(by.css('.eventsTable tbody')).get(eventRowNum).$('tr:nth-child(2n)').isPresent();
+    return element.all(by.css('.eventsTable tbody')).get(eventRowNum).$('tr:nth-child(2)').isPresent();
 };
 
 mainTable.getEventInfo = function(eventRowNum){
-    var eventInfoRow = element.all(by.css('.eventsTable tbody')).get(eventRowNum).$('tr:nth-child(2n)');
+    var eventInfoRow = element.all(by.css('.eventsTable tbody')).get(eventRowNum).$('tr:nth-child(2)');
     return eventInfoRow.$$('span.ng-binding').getText().then(function(texts){
         var eventInfo = {};
         for( var i = 0; i < texts.length; i++){
@@ -74,7 +74,7 @@ function EventsTableColumn(columnClass){
     };
 
     this.sort = function(){
-            return element(by.css('.eventsTable th .'+columnClass+' span')).click();
+        return element(by.css('.eventsTable th .'+columnClass)).click();
     };
 }
 

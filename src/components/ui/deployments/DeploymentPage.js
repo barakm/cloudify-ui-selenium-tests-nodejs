@@ -106,6 +106,10 @@ exports.goToInputsOutputs = function () {
     goToSection(testConf.deployment.sections.inputs_outputs.name);
 };
 
+exports.goToPlugins = function () {
+    goToSection(testConf.deployment.sections.plugins.name);
+};
+
 exports.goToSource = function () {
     goToSection(testConf.deployment.sections.source.name);
 };

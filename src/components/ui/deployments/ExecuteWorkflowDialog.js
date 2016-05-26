@@ -24,5 +24,5 @@ exports.setDetails = function( opts ){
 };
 
 exports.submit = function(){
-    return $('[ng-click="executeWorkflow()"]').click();
+    return $('.ngdialog .buttonsContainer button:last-child').click();
 };

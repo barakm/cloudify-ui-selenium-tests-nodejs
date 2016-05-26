@@ -71,7 +71,7 @@ exports.createDeploymentWithDefaultBtn = function(opts) {
 };
 
 exports.clickUploadBlueprint = function(){
-    element(by.css('[ng-click="openAddDialog()"]')).click();
+    element(by.css('[upload-blueprint-button] button')).click();
     return browser.sleep(1000); // fade in effect??
 };
 
@@ -100,7 +100,7 @@ exports.deleteBlueprint = function(opts) {
     return exports.getBlueprint(opts).then(function(blueprint){
         new common.ActionsDropdown(blueprint).clickMenuOption('Delete');
     }).then(function(){
-        return element(by.css('[ng-click="confirmDelete()"]')).click();
+        return element.all(by.css('.buttonsContainer button')).last().click();
     });
 };
 

@@ -13,7 +13,7 @@ module.exports = function ActionsDropdown(base) {
             return base.element(by.css('[dropdown-toggle]'))
                 .click()
                 .then(function(){
-                    return base.all(by.css('li > button')).filter(function (el) {
+                    return base.all(by.css('.dropdown-menu button')).filter(function (el) {
                         return el.getText().then(function (text) {
                             return text === option;
                         });

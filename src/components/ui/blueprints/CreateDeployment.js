@@ -9,13 +9,13 @@
  * @returns {promise}
  */
 exports.setName = function(name) {
-    return element(by.model('$parent.deployment_id')).sendKeys(name);
+    return element(by.model('deploymentId')).sendKeys(name);
 };
 
 /** Click on 'Raw' tab on create deployment dialog
  */
 exports.clickOnRaw = function() {
-    element.all(by.css('#deployBlueprintDialog .deployInputs .buttons-group button')).then(function(btns) {
+    element.all(by.css('.deploy-dialog .deployInputs .buttons-group button')).then(function(btns) {
         btns[1].click();
     });
 };
@@ -36,7 +36,7 @@ exports.setRaw = exports.setParams;
  * @returns {promise}
  */
 exports.deploy = function() {
-    return element(by.css('#deployBlueprintDialog .deployButtons button')).click();
+    return element(by.css('.deploy-dialog .buttonsContainer button')).click();
 };
 
 exports.submit = exports.deploy;

@@ -10,8 +10,11 @@ describe('blueprints page', function(){
 
     beforeEach(function(){ logger.info('running from ' + __filename); });
 
-    beforeEach(function(){
-        components.ui.LoginPage.goTo().login('admin', 'admin');
+    beforeAll(function() { components.ui.LoginPage.goTo().login('admin', 'admin'); });
+
+    beforeEach(function (done) {
+        components.ui.layout.goToBlueprints();
+        browser.sleep(1000).then(done);
     });
 
     describe('blueprint view', function() {
@@ -22,6 +25,7 @@ describe('blueprints page', function(){
 
         it('should have all sections', function (done) {
             components.ui.blueprints.BlueprintPage.goToNodes();
+            components.ui.blueprints.BlueprintPage.goToPlugins();
             components.ui.blueprints.BlueprintPage.goToSource();
             browser.sleep(1000).then(done);
         });
@@ -47,7 +51,7 @@ describe('blueprints page', function(){
             browser.get('/#/blueprint/nodecellar1/source');
             browser.ignoreSynchronization = true;
             BlueprintPage.Source.getLoadingMessage().then(function(result) {
-                expect(result).toBe('Generating Blueprint Source View...');
+                expect(result).toBe('Generating blueprint Source View...');
             });
 
             browser.sleep(0).then(function(){
@@ -65,9 +69,9 @@ describe('blueprints page', function(){
 
             var newDeploymentName = 'new-deployment-' + new Date().getTime();
 
-            components.ui.common.Dialog.clickClose(); // lets test cancel on the way!
+            components.ui.common.Dialog.close(); // lets test cancel on the way!
 
-            function createDeployment( waitFor ) {
+            function _createDeployment( waitFor ) {
 
                 components.ui.blueprints.IndexPage.createDeployment({'name': testConf.blueprints.blueprintToDeploy});
                 components.ui.blueprints.CreateDeployment.setDetails({
@@ -80,20 +84,21 @@ describe('blueprints page', function(){
                 }
             }
 
-            createDeployment(true);
+            _createDeployment(true);
 
             browser.sleep(3000);
             expect(browser.getCurrentUrl()).toContain('/deployment/', 'DEPLOY_REDIRECT should redirect to deployments');
 
             components.ui.layout.goToBlueprints();
 
-            createDeployment(false);
+            _createDeployment(false);
 
             expect(components.ui.common.Dialog.getErrorMessage()).toContain('already', 'CFY-2902 duplicate name should cause error');
-            components.ui.common.Dialog.close();
+            components.ui.common.Dialog.closeToast();
 
             components.ui.layout.goToDeployments();
             components.ui.deployments.IndexPage.deleteDeployment({id:newDeploymentName});
+            components.ui.deployments.DeleteDeployment.clickConfirm();
 
             browser.sleep(1000).then(done);
         });
@@ -103,7 +108,8 @@ describe('blueprints page', function(){
             logger.trace('start create deployment with default button test');
 
             components.ui.blueprints.IndexPage.createDeploymentWithDefaultBtn({'name' : testConf.blueprints.blueprintToDeploy});
-            expect(element(by.css('#deployBlueprintDialog')).isPresent()).toBe(true);
+            expect(element(by.css('.deploy-dialog')).isPresent()).toBe(true);
+            components.ui.common.Dialog.close();
 
             browser.sleep(500).then(function(){ done(); });
         });
@@ -115,7 +121,7 @@ describe('blueprints page', function(){
             var uploadedBlueprint = { blueprint_id: blueprintName , 'blueprint_filename' : 'simple-blueprint.yaml', 'blueprint_location':'https://github.com/cloudify-cosmo/cloudify-nodecellar-example/archive/master.zip' };
             components.ui.blueprints.IndexPage.uploadBlueprint();
 
-            components.ui.common.Dialog.clickClose();
+            components.ui.common.Dialog.close();
 
             expect(components.ui.blueprints.UploadBlueprintDialog.getUploadForm().isPresent()).toBe(false,'CLOSE_BLUEPRINT_DIALOG dialog should be closed after');
             components.ui.blueprints.IndexPage.uploadBlueprint(); // reopen

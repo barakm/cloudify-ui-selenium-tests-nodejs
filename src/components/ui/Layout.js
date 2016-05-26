@@ -26,4 +26,5 @@ exports.goToView = function(viewName) {
 
 exports.goToBlueprints = function(){ return common.SideMenu.goTo('blueprints'); };
 exports.goToDeployments = function(){ return common.SideMenu.goTo('deployments'); };
+exports.goToPlugins = function(){ return common.SideMenu.goTo('plugins'); };
 exports.goToLogsEvents = function(){ return common.SideMenu.goTo('Logs & Events'); };

@@ -32,6 +32,10 @@
                             "name": "Nodes",
                             "url": "nodes"
                         },
+                        "plugins": {
+                            "name": "Plugins",
+                            "url": "plugins"
+                        },
                         "source": {
                             "name": "Source",
                             "url": "source"
@@ -72,6 +76,10 @@
                             "name": "Nodes",
                             "url": "nodes"
                         },
+                        "plugins": {
+                            "name": "Plugins",
+                            "url": "plugins"
+                        },
                         "source": {
                             "name": "Source",
                             "url": "source"
@@ -94,6 +102,11 @@
                         "properties": "properties",
                         "relationships": "relationships"
                     }
+                }
+            },
+            "plugins_spec": {
+                "plugins": {
+                    "pluginToRead": "cloudify-diamond-plugin"
                 }
             },
             "events_spec": {

@@ -105,7 +105,7 @@ exports.waitForExecutionToFinish = function(opts){
         }catch(e){
             return false;
         }
-    },10000);
+    },120000);
 
     browser.sleep(1).then(function(){
         logger.info('progress is displayed');
@@ -160,7 +160,7 @@ exports.selectDeployment = function(indexOrName){
     if( typeof indexOrName === 'number'){
         $$('[ng-click="select(deployment)"]').get(indexOrName).click();
     }else {
-        utils.filters.filterByText($$('[ng-click="select(deployment)"] .id'), indexOrName).first().element(by.xpath('ancestor::tr')).click();
+        utils.filters.filterByText($$('[ng-click="select(deployment)"] .id'), indexOrName).first().element(by.xpath('ancestor::tbody')).click();
     }
 };
 

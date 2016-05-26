@@ -10,9 +10,9 @@ describe('deployments page', function () {
 
     beforeEach(function(){ logger.info('running from ' + __filename); });
 
+    beforeAll(function() { components.ui.LoginPage.goTo().login('admin', 'admin'); });
+
     beforeEach(function (done) {
-        //components.ui.deployments.IndexPage.beforeEach(done);
-        components.ui.LoginPage.goTo().login('admin', 'admin');
         components.ui.layout.goToDeployments();
         browser.sleep(1000).then(done);
     });
@@ -22,12 +22,10 @@ describe('deployments page', function () {
         var deploymentName;
         var deploymentsOpts;
 
-        beforeEach(function(done){
-
-            deploymentName ='deployment_' + new Date().getTime();
+        function createTestDeployment() {
+            deploymentName = 'deployment_' + new Date().getTime();
             deploymentsOpts = {id : deploymentName };
-            // lets deploy a blueprint to make this test rerunable.. I hate it, but what can we do
-            // if deploying was a simple act, we would not care..
+
             components.ui.layout.goToBlueprints();
             components.ui.blueprints.IndexPage.createDeployment({ name : 'nodecellar1' });
             components.ui.blueprints.CreateDeployment.setDetails({ name : deploymentName , 'raw' : {
@@ -38,11 +36,10 @@ describe('deployments page', function () {
             components.ui.blueprints.CreateDeployment.confirm();
 
             components.ui.deployments.DeploymentPage.waitForInitializingToStop();
-            browser.sleep(1000).then(done);
-
-        });
+        }
 
         it('should not have any search queries in the url after creation', function(done){
+            createTestDeployment();
 
             expect(browser.getCurrentUrl()).toMatch(/.+topology$/);
 
@@ -55,7 +52,6 @@ describe('deployments page', function () {
 
             components.ui.layout.goToDeployments();
 
-            var deploymentsOpts = {id : deploymentName };
             components.ui.deployments.IndexPage.deleteDeployment(deploymentsOpts);
             components.ui.deployments.DeleteDeployment.clickCancel();
             components.ui.deployments.IndexPage.deleteDeployment(deploymentsOpts);
@@ -69,9 +65,8 @@ describe('deployments page', function () {
         describe('should be deletable from deployment layout view', function (){
 
             beforeEach(function (done){
+                createTestDeployment();
 
-                components.ui.deployments.DeploymentLayout.deleteDeployment(deploymentsOpts);
-                components.ui.deployments.DeleteDeployment.clickCancel();
                 components.ui.deployments.DeploymentLayout.deleteDeployment(deploymentsOpts);
                 components.ui.deployments.DeleteDeployment.clickConfirm();
 
@@ -107,12 +102,13 @@ describe('deployments page', function () {
         browser.sleep(1000).then(done);
     });
 
-    it('should go into deployment and verify all section exists', function (done) {
+    it('should go into deployment and verify all section exist', function (done) {
 
         components.ui.deployments.IndexPage.goToDeployment(testConf.deployment.deploymentToRead);
         components.ui.deployments.DeploymentPage.goToNodes();
         components.ui.deployments.DeploymentPage.goToExecutions();
         components.ui.deployments.DeploymentPage.goToInputsOutputs();
+        components.ui.deployments.DeploymentPage.goToPlugins();
         components.ui.deployments.DeploymentPage.goToSource();
         components.ui.deployments.DeploymentPage.goToMonitoring();
 

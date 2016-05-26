@@ -7,6 +7,7 @@ exports.Topology = common.Topology;
 exports.PropertiesPanel = common.PropertiesPanel;
 exports.NodesTable = common.NodesTable;
 exports.Network = common.Network;
+exports.Plugins = common.Plugins;
 exports.Source = common.Source;
 
 /**
@@ -24,6 +25,10 @@ exports.goToTopology = function(){
 
 exports.goToNodes = function(){
     goToSection(testConf.blueprints.sections.nodes.name);
+};
+
+exports.goToPlugins = function(){
+    goToSection(testConf.blueprints.sections.plugins.name);
 };
 
 exports.goToSource = function(){

@@ -13,11 +13,6 @@ jasmine.getEnv().addReporter(new jasmineReporters.TerminalReporter({
     showStack: true
 }));
 
-beforeEach(function(){
-    browser.manage().timeouts().pageLoadTimeout(10000);
-    browser.driver.manage().window().maximize(); // we will test smaller resolutions in the future
-});
-
 browser.getLogger = function(name){
 
     var logger = require('log4js').getLogger(name);

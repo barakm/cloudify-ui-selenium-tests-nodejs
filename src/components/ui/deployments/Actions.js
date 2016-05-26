@@ -84,7 +84,7 @@ var Actions = function() {
     this.playConfirmation = function(action) {
         var deferred = q.defer();
         // find all the buttons on the confirmation dialog
-        driver.get().findElements(css('#confirmationDialogContainer .confirmationButtons button')).then(function(confirmButtons){
+        driver.get().findElements(css('.ngdialog .buttonsContainer button')).then(function(confirmButtons){
             // run over all the buttons and search for the right match
             async.each(confirmButtons, function(button, callback){
                 button.getText().then(function(buttonText){

@@ -27,7 +27,7 @@ filters.timeRange.lte = new Datepicker(element.all(by.css('[predicate=timestamp]
 filters.messageText = new Input(element(by.css('[ng-model="eventsFilter.messageText"]')));
 
 filters.clearFilters = function(){
-    return element(by.css('button[data-ng-click="clearFilters()"]')).click();
+    return element(by.css('button[ng-click="resetFilters()"]')).click();
 };
 
 filters.columnsOrganizer.toggle = function(column){

@@ -61,7 +61,7 @@ describe('nodes instances page', function() {
 
             nodesInstances.filters.clearFilters();
 
-            expect(nodesInstances.filters.blueprints.getSelectedText()).toBe('Choose a Blueprint');
+            expect(nodesInstances.filters.blueprints.getSelectedText()).toBe('Choose a blueprint');
             //deployments is disabled until a blueprint is chosen
             nodesInstances.filters.blueprints.select(config.firstBlueprint);
             expect(nodesInstances.filters.deployments.getSelectedText()).toEqual([]);
