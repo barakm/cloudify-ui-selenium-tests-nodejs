@@ -36,12 +36,12 @@ exports.config = {
 
     suites: {
         sanity: [ 'spec/normalize.js',
+            'spec/sanity/snapshots.js',
             'spec/sanity/blueprints.js',
             'spec/sanity/deployments.js',
             'spec/sanity/plugins.js',
             'spec/sanity/events.js',
             'spec/sanity/nodesInstances.js',
-            'spec/sanity/snapshots.js',
             'spec/sanity/maintenance.js',
             'spec/sanity/hotkeys.js'
         ],
