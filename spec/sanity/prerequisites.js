@@ -8,6 +8,9 @@ var configDeployments = components.config.tests.sanity.deployments_spec;
 var configEvents = components.config.tests.sanity.events_spec;
 var configHotkeys = components.config.tests.sanity.hotkeys_spec;
 
+var isInstallPrerequisites = process.env.INSTALL_SYSTEM_TESTS_PREREQUISITES;
+var isRunSystemTests = /true/i.test(process.env.RUN_SYSTEM_TESTS);
+
 function addBlueprint(blueprintId, blueprintFilename, blueprintLocation) {
     components.ui.layout.goToBlueprints();
     components.ui.blueprints.IndexPage.getBlueprint({name: blueprintId}, true).then(function(blue) {
@@ -37,16 +40,23 @@ function addDeployment(blueprintId, deploymentId, deploymentInputs, workflowToEx
 
             if (workflowToExecute) {
                 components.ui.deployments.DeploymentPage.waitForInitializingToStop();
-                components.ui.deployments.IndexPage.executeWorkflowWithoutWaitingUntilDone({
+                components.ui.deployments.IndexPage.executeWorkflow({
                     deployment: {id: deploymentId},
                     workflow: workflowToExecute
-                });
+                }, isRunSystemTests);
             }
         }
     });
 }
 
-describe('prepare test assumptions', function() {
+logger.info('INSTALL_SYSTEM_TESTS_PREREQUISITES is ' + isInstallPrerequisites);
+
+if (/false/i.test(isInstallPrerequisites)) {
+    logger.info('system tests prerequisites will not be installed');
+    return;
+}
+
+describe('installing system tests prerequisites', function() {
     beforeAll(function() {
         logger.info('running from ' + __filename);
         components.ui.LoginPage.goTo().login('admin', 'admin');
@@ -80,7 +90,7 @@ describe('prepare test assumptions', function() {
         );
     });
 
-    it('should create and install a deployment "installed_deployment" based on "nodecellar1" blueprint', function() {
+    it('should create a deployment "installed_deployment" based on "nodecellar1" blueprint', function() {
         addDeployment(
             configBlueprints.blueprints.blueprintToDeploy,
             configDeployments.deployment.deploymentToRead.id,
@@ -88,7 +98,7 @@ describe('prepare test assumptions', function() {
         );
     });
 
-    it('should create and install a deployment "installed_deployment2" based on "nodecellar1" blueprint', function() {
+    it('should create a deployment "installed_deployment2" based on "nodecellar1" blueprint', function() {
         addDeployment(
             configEvents.blueprintWithEvents,
             configEvents.secondInstalledDeployment.id,

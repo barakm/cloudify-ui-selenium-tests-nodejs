@@ -1,9 +1,0 @@
-Before running tests we assume that manager has the following prerequisites,
-they will be added by "prerequisites" suite:
-
-1. blueprint "nodecellar1" based on nodecellar blueprint (see resources folder for the blueprint)
-2. blueprint "nodecellar_undeployed" based on nodecellar blueprint
-3. deployment "deployment_to_delete" deployed from "nodecellar1" blueprint
-5. deployment "hotkeys_deployment" deployed from "nodecellar1" blueprint
-6. deployment "installed_deployment" deployed and installed from "nodecellar1" blueprint
-4. deployment "installed_deployment2" deployed and installed from "nodecellar1" blueprint

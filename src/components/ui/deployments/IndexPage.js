@@ -156,6 +156,18 @@ exports.executeWorkflowWithoutWaitingUntilDone = function(opts){
     executeWorkflowDialog.submit();
 };
 
+exports.executeWorkflow = function(opts, isWaitUntilDone){
+
+    var executeWorkflowDialog = require('./ExecuteWorkflowDialog');
+    exports.route();
+    exports.executeWorkflow(opts.deployment);
+    executeWorkflowDialog.workflows.select(opts.workflow);
+    executeWorkflowDialog.submit();
+    if (isWaitUntilDone) {
+        exports.waitForExecutionToFinish(opts.deployment);
+    }
+};
+
 exports.selectDeployment = function(indexOrName){
     if( typeof indexOrName === 'number'){
         $$('[ng-click="select(deployment)"]').get(indexOrName).click();
