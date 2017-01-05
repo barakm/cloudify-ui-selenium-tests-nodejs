@@ -93,14 +93,14 @@ describe('Website hotkeys', function(){
                 components.ui.blueprints.IndexPage.selectBlueprint(0);
                 hotkeys.BlueprintActions.deploy();
 
-                expect($('.deploy-dialog').isPresent()).toBe(true);
+                expect($('#deploy-blueprint-dialog').isPresent()).toBe(true);
             });
 
             it('should open delete dialog', function(){
                 components.ui.blueprints.IndexPage.selectBlueprint(0);
                 hotkeys.BlueprintActions.delete();
 
-                expect($('.delete-dialog').isPresent()).toBe(true);
+                expect($('#delete-blueprint-dialog').isPresent()).toBe(true);
             });
         });
 
@@ -113,13 +113,13 @@ describe('Website hotkeys', function(){
             it('should open deploy dialog', function(){
                 hotkeys.BlueprintActions.deploy();
 
-                expect($('.deploy-dialog').isPresent()).toBe(true);
+                expect($('#deploy-blueprint-dialog').isPresent()).toBe(true);
             });
 
             it('should open delete dialog', function(){
                 hotkeys.BlueprintActions.delete();
 
-                expect($('.delete-dialog').isPresent()).toBe(true);
+                expect($('#delete-blueprint-dialog').isPresent()).toBe(true);
             });
         });
     });
@@ -142,14 +142,14 @@ describe('Website hotkeys', function(){
                     components.ui.deployments.IndexPage.selectDeployment(0);
                     hotkeys.DeploymentActions.updateDeployment();
 
-                    expect($('.update-deployment-dialog').isPresent()).toBe(true);
+                    expect($('#update-deployment-dialog').isPresent()).toBe(true);
                 });
 
                 it('should open delete dialog', function(){
                     components.ui.deployments.IndexPage.selectDeployment(0);
                     hotkeys.DeploymentActions.delete();
 
-                    expect($('.delete-dialog').isPresent()).toBe(true);
+                    expect($('#delete-deployment-dialog').isPresent()).toBe(true);
                 });
             });
 
@@ -161,17 +161,17 @@ describe('Website hotkeys', function(){
 
                 it('should open execute dialog', function(){
                     hotkeys.DeploymentActions.execute();
-                    expect($('#startExecutionDialog').isPresent()).toBe(true);
+                    expect($('#start-execution-dialog').isPresent()).toBe(true);
                 });
 
                 it('should open update deployment dialog', function(){
                     hotkeys.DeploymentActions.updateDeployment();
 
-                    expect($('.update-deployment-dialog').isPresent()).toBe(true);
+                    expect($('#update-deployment-dialog').isPresent()).toBe(true);
                 });
                 it('should open delete dialog', function(){
                     hotkeys.DeploymentActions.delete();
-                    expect($('.delete-dialog').isPresent()).toBe(true);
+                    expect($('#delete-deployment-dialog').isPresent()).toBe(true);
                 });
             });
         });

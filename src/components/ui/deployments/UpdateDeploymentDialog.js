@@ -1,7 +1,7 @@
 'use strict';
 var Input = require('../common/Input');
 var UploadForm = require('../common/UploadForm');
-var dialog = $('.update-deployment-dialog');
+var dialog = $('#update-deployment-dialog');
 var confirmButton = dialog.$$('.confirmationButtons button').get(1);
 var cancelButton = dialog.$$('.confirmationButtons button').get(0);
 

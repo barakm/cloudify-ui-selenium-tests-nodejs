@@ -114,7 +114,7 @@ describe('deployments page', function () {
             components.ui.deployments.UpdateDeploymentDialog.clickConfirm();
 
             expect(components.ui.deployments.UpdateDeploymentDialog.isUpdateError()).toBe(false);
-            expect($('.update-deployment-dialog').isPresent()).toBe(false);
+            expect($('#update-deployment-dialog').isPresent()).toBe(false);
 
             expect(components.ui.deployments.DeploymentLayout.isDeploymentUpdating()).toBe(true);
 
@@ -144,7 +144,7 @@ describe('deployments page', function () {
             components.ui.deployments.UpdateDeploymentDialog.clickConfirm();
 
             expect(components.ui.deployments.UpdateDeploymentDialog.isUpdateError()).toBe(false);
-            expect($('.update-deployment-dialog').isPresent()).toBe(false);
+            expect($('#update-deployment-dialog').isPresent()).toBe(false);
 
             expect(components.ui.deployments.DeploymentLayout.isDeploymentUpdating()).toBe(true);
 
@@ -230,7 +230,7 @@ describe('deployments page', function () {
             it('should open update dialog', function(){
                 components.ui.deployments.DeploymentLayout.updateDeployment();
 
-                expect($('.update-deployment-dialog').isPresent()).toBe(true);
+                expect($('#update-deployment-dialog').isPresent()).toBe(true);
             });
 
             it('should validate form', function(){
@@ -284,7 +284,7 @@ describe('deployments page', function () {
     it('should open update dialog', function(){
         components.ui.deployments.DeploymentLayout.updateDeployment();
 
-        expect($('.update-deployment-dialog').isPresent()).toBe(true);
+        expect($('#update-deployment-dialog').isPresent()).toBe(true);
     });
 
     //xit('should open node details panel when clicking on node in network section', function (done) {

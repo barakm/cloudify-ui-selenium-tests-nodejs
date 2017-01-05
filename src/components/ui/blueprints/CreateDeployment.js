@@ -15,7 +15,7 @@ exports.setName = function(name) {
 /** Click on 'Raw' tab on create deployment dialog
  */
 exports.clickOnRaw = function() {
-    element.all(by.css('#deployBlueprintDialog .deployInputs .buttons-group button')).then(function(btns) {
+    element.all(by.css('#deploy-blueprint-dialog .deployInputs .buttons-group button')).then(function(btns) {
         btns[1].click();
     });
 };
@@ -36,7 +36,7 @@ exports.setRaw = exports.setParams;
  * @returns {promise}
  */
 exports.deploy = function() {
-    return element(by.css('#deployBlueprintDialog .deployButtons button')).click();
+    return element(by.css('#deploy-blueprint-dialog .deployButtons button')).click();
 };
 
 exports.submit = exports.deploy;
